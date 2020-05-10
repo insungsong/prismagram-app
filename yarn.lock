@@ -1161,6 +1161,14 @@
   resolved "https://registry.yarnpkg.com/@react-native-community/masked-view/-/masked-view-0.1.6.tgz#c7f2ac187c1f25aa8c30d11baa8f4398eca3bb84"
   integrity sha512-PpMoeXwPUoldCRKDuSi+zK5rT+sJTW6ri6RdGPkSKRzU77Q1d9IaR0O5IKvBj0XSdL3p+dcOa05gk35aGDffBQ==
 
+"@react-navigation/bottom-tabs@^5.4.2":
+  version "5.4.2"
+  resolved "https://registry.yarnpkg.com/@react-navigation/bottom-tabs/-/bottom-tabs-5.4.2.tgz#db1090fe2fdb27c77ffa983a618accd158a12080"
+  integrity sha512-wYUDQ45Yienf4oblWuGAze/WMuwQedHJo+xEeBb8LTCrlMfz7GnG0xAOTDi2YpKFuZEVtiXOwPmO2Hweb3Q6ZA==
+  dependencies:
+    color "^3.1.2"
+    react-native-iphone-x-helper "^1.2.1"
+
 "@react-navigation/core@^5.5.2":
   version "5.5.2"
   resolved "https://registry.yarnpkg.com/@react-navigation/core/-/core-5.5.2.tgz#14e844287225fe7a41b471262f282ecd2d0404ea"
@@ -1174,9 +1182,9 @@
     use-subscription "^1.4.0"
 
 "@react-navigation/native@^5.2.6":
-  version "5.2.6"
-  resolved "https://registry.yarnpkg.com/@react-navigation/native/-/native-5.2.6.tgz#e17f89a1939b8f2bebcc0e8a87dfe68ff3a9c995"
-  integrity sha512-j4oPs5fjD8jm8n2tDc7zyXrqa3RmE+iiQUUmdhi2yEMs6YUGCiON7AyZiJGONKQ+GCzyVfK1GHyVtnihvKvp3w==
+  version "5.3.0"
+  resolved "https://registry.yarnpkg.com/@react-navigation/native/-/native-5.3.0.tgz#e55ebe18c125a6e6f0bc5de185a3cf688674e65d"
+  integrity sha512-mh6TT4F4TkiwNOI1dIhGD/6iZIjFClqhABZKfYQY4h1Zz8I0cS3Yw9FNhI27k4q0kYuEqQQvXKa2Q84WIK+mIQ==
   dependencies:
     "@react-navigation/core" "^5.5.2"
 
@@ -1188,9 +1196,9 @@
     nanoid "^3.1.5"
 
 "@react-navigation/stack@^5.3.1":
-  version "5.3.1"
-  resolved "https://registry.yarnpkg.com/@react-navigation/stack/-/stack-5.3.1.tgz#7810b0e16faadce181a5a718002addc8b2680839"
-  integrity sha512-LACbV6TaVwIOfJCfq4sHUYdfMm1JgtT6d3bfFFJk8hub8VQtHYdm9YdpKVk28uJbNGFqBIr4lqekM0uqZgJ+Kw==
+  version "5.3.2"
+  resolved "https://registry.yarnpkg.com/@react-navigation/stack/-/stack-5.3.2.tgz#a685fde854ccc2ca98dcbca231383c0c08360133"
+  integrity sha512-ceo88QOygNSewl88Gx5GXRXVdH1QuOt37dKO99pWbowQJlluhDrMfRYFd1yI/aTtkjiBvwK+apeIawQ/JiP4Hw==
   dependencies:
     color "^3.1.2"
     react-native-iphone-x-helper "^1.2.1"
