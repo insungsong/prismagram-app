@@ -3,7 +3,6 @@ import { AsyncStorage } from "react-native";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { persistCache } from "apollo-cache-persist";
 import { ThemeProvider } from "styled-components";
-import { Text, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { AppLoading } from "expo";
 import * as Font from "expo-font";
@@ -12,11 +11,13 @@ import ApolloClient from "apollo-boost";
 import options from "./apollo";
 import { ApolloProvider } from "react-apollo-hooks";
 import styles from "./styles";
+import NavController from "./components/NavController";
+import { AuthProvider } from "./AuthContext";
 
 export default function App() {
   const [loaded, setLoaded] = useState(false);
   const [client, setClient] = useState(null);
-  const [isLoggedIn, setIsLoggendIn] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(null);
 
   const preLoad = async () => {
     try {
@@ -36,12 +37,16 @@ export default function App() {
         cache,
         ...options
       });
+
       const isLoggedIn = await AsyncStorage.getItem("isLoggedIn");
-      if (isLoggedIn === null || isLoggedIn === false) {
-        setIsLoggendIn(false);
+
+      if (!isLoggedIn || isLoggedIn === "false") {
+        //!isLoggedIn = undefined && null && false를 다 아우르는 말이다.
+        setIsLoggedIn(false);
       } else {
-        setIsLoggendIn(true);
+        setIsLoggedIn(true);
       }
+
       setLoaded(true);
       setClient(client);
     } catch (e) {
@@ -52,13 +57,12 @@ export default function App() {
     preLoad();
   }, []);
 
-  console.log("tq?");
   return loaded && client && isLoggedIn !== null ? (
     <ApolloProvider client={client}>
       <ThemeProvider theme={styles}>
-        <View>
-          {isLoggedIn === true ? <Text>I'm In</Text> : <Text>I'm out</Text>}
-        </View>
+        <AuthProvider isLoggedIn={isLoggedIn}>
+          <NavController />
+        </AuthProvider>
       </ThemeProvider>
     </ApolloProvider>
   ) : (
