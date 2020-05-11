@@ -14,12 +14,12 @@ export default () => {
     <NavigationContainer>
       <AuthNavigation.Navigator initialRouteName="AuthHome" headerMode="none">
         <AuthNavigation.Screen
-          name="AuthHome"
-          component={AuthHome}
-        ></AuthNavigation.Screen>
-        <AuthNavigation.Screen
           name="Login"
           component={Login}
+        ></AuthNavigation.Screen>
+        <AuthNavigation.Screen
+          name="AuthHome"
+          component={AuthHome}
         ></AuthNavigation.Screen>
         <AuthNavigation.Screen
           name="Signup"

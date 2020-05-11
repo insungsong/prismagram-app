@@ -9,10 +9,8 @@ const View = styled.View`
 
 const Text = styled.Text``;
 
-export default () => {
-  return (
-    <View>
-      <Text>Notification</Text>
-    </View>
-  );
-};
+export default () => (
+  <View>
+    <Text>Message</Text>
+  </View>
+);

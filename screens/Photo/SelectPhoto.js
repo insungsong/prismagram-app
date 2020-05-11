@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const View = styled.View`
+  background-color: white;
   justify-content: center;
   align-items: center;
   flex: 1;
@@ -9,10 +10,8 @@ const View = styled.View`
 
 const Text = styled.Text``;
 
-export default () => {
-  return (
-    <View>
-      <Text>Home</Text>
-    </View>
-  );
-};
+export default () => (
+  <View>
+    <Text>SelectPhoto</Text>
+  </View>
+);
