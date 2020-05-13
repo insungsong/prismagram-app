@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, Image } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Home from "../screens/Tabs/Home";
 import Notification from "../screens/Tabs/Notification";
@@ -7,6 +7,7 @@ import Profile from "../screens/Tabs/Profile";
 import Search from "../screens/Tabs/Search";
 import stackFactory from "../screens/Tabs/stackFactory";
 import MessagesLink from "../components/MessagesLink";
+import NavIcon from "../components/NavIcon";
 
 const TabNavigation = createBottomTabNavigator();
 export default () => {
@@ -19,7 +20,8 @@ export default () => {
           InitailRoute: Home,
           customConfig: {
             hearderStyle: { height: 80 },
-            headerRight: () => <MessagesLink />
+            headerRight: () => <MessagesLink />,
+            headerTitle: <NavIcon name="logo-instagram" size={35} />
           }
         }}
         options={{ title: "Home" }}

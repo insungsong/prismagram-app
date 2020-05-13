@@ -12,22 +12,22 @@ const AuthNavigation = createStackNavigator();
 export default () => {
   return (
     <NavigationContainer>
-      <AuthNavigation.Navigator initialRouteName="AuthHome" headerMode="none">
-        <AuthNavigation.Screen
-          name="Login"
-          component={Login}
-        ></AuthNavigation.Screen>
-        <AuthNavigation.Screen
-          name="AuthHome"
-          component={AuthHome}
-        ></AuthNavigation.Screen>
+      <AuthNavigation.Navigator headerMode="none">
         <AuthNavigation.Screen
           name="Signup"
           component={Signup}
         ></AuthNavigation.Screen>
         <AuthNavigation.Screen
+          name="Login"
+          component={Login}
+        ></AuthNavigation.Screen>
+        <AuthNavigation.Screen
           name="Confirm"
           component={Confirm}
+        ></AuthNavigation.Screen>
+        <AuthNavigation.Screen
+          name="AuthHome"
+          component={AuthHome}
         ></AuthNavigation.Screen>
       </AuthNavigation.Navigator>
     </NavigationContainer>
