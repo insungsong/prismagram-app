@@ -19,12 +19,13 @@ export default function App() {
   const [client, setClient] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(null);
 
+  //AsyncStorage.clear();
   const preLoad = async () => {
-    //await AsyncStorage.clear();
     try {
       await Font.loadAsync({
         ...Ionicons.font
       });
+
       await Asset.loadAsync([require("./assets/logo.png")]);
 
       const cache = new InMemoryCache();
@@ -36,6 +37,12 @@ export default function App() {
 
       const client = new ApolloClient({
         cache,
+        request: async (operation) => {
+          const token = await AsyncStorage.getItem("jwt");
+          return operation.setContext({
+            headers: { Authorization: `Bearer ${token}` }
+          });
+        },
         ...options
       });
 

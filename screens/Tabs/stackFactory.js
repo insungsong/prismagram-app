@@ -1,6 +1,7 @@
 import React from "react";
 import { YellowBox } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
+import { stackStyles } from "../../components/config";
 
 const StackFactory = createStackNavigator();
 
@@ -13,7 +14,10 @@ export default ({ route, navigation }) => {
     ]);
 
     return (
-      <StackFactory.Navigator initialRouteName="Home">
+      <StackFactory.Navigator
+        initialRouteName="Home"
+        screenOptions={{ headerStyle: { ...stackStyles } }}
+      >
         <StackFactory.Screen
           name={route.name}
           component={InitailRoute}

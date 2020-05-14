@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, Image } from "react-native";
+import { Platform } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Home from "../screens/Tabs/Home";
 import Notification from "../screens/Tabs/Notification";
@@ -12,7 +13,13 @@ import NavIcon from "../components/NavIcon";
 const TabNavigation = createBottomTabNavigator();
 export default () => {
   return (
-    <TabNavigation.Navigator>
+    <TabNavigation.Navigator
+      tabBarOptions={{
+        showLabel: false,
+        Style: { backgroundColor: "#FAFAFA" }
+      }}
+      screenOptions={{ hearderStyle: { backgroundColor: "#FAFAFA" } }}
+    >
       <TabNavigation.Screen
         name="Home"
         component={stackFactory}
@@ -24,30 +31,15 @@ export default () => {
             headerTitle: <NavIcon name="logo-instagram" size={35} />
           }
         }}
-        options={{ title: "Home" }}
-      />
-      <TabNavigation.Screen
-        name="Notification"
-        component={stackFactory}
-        initialParams={{
-          InitailRoute: Notification,
-          customConfig: { hearderStyle: { height: 80 } }
+        options={{
+          title: "Home",
+          tabBarIcon: ({ focused }) => (
+            <NavIcon
+              focused={focused}
+              name={Platform.OS === "ios" ? "ios-home" : "md-home"}
+            />
+          )
         }}
-        options={{ title: "Notification" }}
-      />
-      <TabNavigation.Screen
-        name="Add"
-        component={View}
-        listeners={({ navigation }) => navigation.navigate("PhotoNavigation")}
-      />
-      <TabNavigation.Screen
-        name="Profile"
-        component={stackFactory}
-        initialParams={{
-          InitailRoute: Profile,
-          customConfig: { hearderStyle: { height: 80 } }
-        }}
-        options={{ title: "Profile" }}
       />
       <TabNavigation.Screen
         name="Search"
@@ -56,7 +48,71 @@ export default () => {
           InitailRoute: Search,
           customConfig: { hearderStyle: { height: 80 } }
         }}
-        options={{ title: "Search" }}
+        options={{
+          title: "Search",
+          tabBarIcon: ({ focused }) => (
+            <NavIcon
+              focused={focused}
+              name={Platform.OS === "ios" ? "ios-search" : "md-search"}
+            />
+          )
+        }}
+      />
+      <TabNavigation.Screen
+        name="Add"
+        component={View}
+        listeners={({ navigation }) => navigation.navigate("PhotoNavigation")}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <NavIcon
+              focused={focused}
+              size={30}
+              name={Platform.OS === "ios" ? "ios-add" : "md-add"}
+            />
+          )
+        }}
+      />
+      <TabNavigation.Screen
+        name="Notification"
+        component={stackFactory}
+        initialParams={{
+          InitailRoute: Notification,
+          customConfig: { hearderStyle: { height: 80 } }
+        }}
+        options={{
+          title: "Notification",
+          tabBarIcon: ({ focused }) => (
+            <NavIcon
+              focused={focused}
+              name={
+                Platform.OS === "ios"
+                  ? focused
+                    ? "ios-heart"
+                    : "ios-heart-empty"
+                  : focused
+                  ? "md-heart"
+                  : "md-heart-empty"
+              }
+            />
+          )
+        }}
+      />
+      <TabNavigation.Screen
+        name="Profile"
+        component={stackFactory}
+        initialParams={{
+          InitailRoute: Profile,
+          customConfig: { hearderStyle: { height: 80 } }
+        }}
+        options={{
+          title: "Profile",
+          tabBarIcon: ({ focused }) => (
+            <NavIcon
+              focused={focused}
+              name={Platform.OS === "ios" ? "ios-person" : "md-person"}
+            />
+          )
+        }}
       />
     </TabNavigation.Navigator>
   );

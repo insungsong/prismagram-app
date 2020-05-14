@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Loader from "../../components/Loader";
 
 const View = styled.View`
   background-color: white;
@@ -13,7 +14,7 @@ const Text = styled.Text``;
 export default () => {
   return (
     <View>
-      <Text>Search</Text>
+      <Loader />
     </View>
   );
 };

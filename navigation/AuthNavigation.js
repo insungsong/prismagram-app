@@ -9,27 +9,25 @@ import Confirm from "../screens/Auth/Confirm";
 
 const AuthNavigation = createStackNavigator();
 
-export default () => {
-  return (
-    <NavigationContainer>
-      <AuthNavigation.Navigator headerMode="none">
-        <AuthNavigation.Screen
-          name="Signup"
-          component={Signup}
-        ></AuthNavigation.Screen>
-        <AuthNavigation.Screen
-          name="Login"
-          component={Login}
-        ></AuthNavigation.Screen>
-        <AuthNavigation.Screen
-          name="Confirm"
-          component={Confirm}
-        ></AuthNavigation.Screen>
-        <AuthNavigation.Screen
-          name="AuthHome"
-          component={AuthHome}
-        ></AuthNavigation.Screen>
-      </AuthNavigation.Navigator>
-    </NavigationContainer>
-  );
-};
+export default () => (
+  <NavigationContainer>
+    <AuthNavigation.Navigator initialRouteName="Home" headerMode="none">
+      <AuthNavigation.Screen
+        name="AuthHome"
+        component={AuthHome}
+      ></AuthNavigation.Screen>
+      <AuthNavigation.Screen
+        name="Signup"
+        component={Signup}
+      ></AuthNavigation.Screen>
+      <AuthNavigation.Screen
+        name="Login"
+        component={Login}
+      ></AuthNavigation.Screen>
+      <AuthNavigation.Screen
+        name="Confirm"
+        component={Confirm}
+      ></AuthNavigation.Screen>
+    </AuthNavigation.Navigator>
+  </NavigationContainer>
+);
