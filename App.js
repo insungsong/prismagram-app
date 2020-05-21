@@ -34,7 +34,6 @@ export default function App() {
         cache,
         storage: AsyncStorage
       });
-
       const client = new ApolloClient({
         cache,
         request: async (operation) => {

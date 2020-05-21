@@ -9,6 +9,7 @@ import Search from "../screens/Tabs/Search";
 import stackFactory from "../screens/Tabs/stackFactory";
 import MessagesLink from "../components/MessagesLink";
 import NavIcon from "../components/NavIcon";
+import Detail from "../screens/Tabs/Detail";
 
 const TabNavigation = createBottomTabNavigator();
 export default () => {
@@ -41,6 +42,7 @@ export default () => {
           )
         }}
       />
+
       <TabNavigation.Screen
         name="Search"
         component={stackFactory}

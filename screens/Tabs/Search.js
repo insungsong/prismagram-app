@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Loader from "../../components/Loader";
+import SearchPresenter from "./SearchPresenter";
 
 const View = styled.View`
   background-color: white;
@@ -9,12 +10,6 @@ const View = styled.View`
   flex: 1;
 `;
 
-const Text = styled.Text``;
-
-export default () => {
-  return (
-    <View>
-      <Loader />
-    </View>
-  );
+export default ({ navigation }) => {
+  return <SearchPresenter navigation={navigation} />;
 };

@@ -1,7 +1,19 @@
-import React from "react";
-import { Image } from "react-native";
+import React, { useState } from "react";
+import { Image, Platform } from "react-native";
 import styled from "styled-components";
 import PropTypes from "prop-types";
+import Swiper from "react-native-swiper";
+import constants from "../constants";
+import { Ionicons } from "@expo/vector-icons";
+import styles from "../styles";
+import { gql } from "apollo-boost";
+import { useMutation } from "react-apollo-hooks";
+
+const TOGGLE_LIKE = gql`
+  mutation toggleLike($postId: String!) {
+    toggleLike(postId: $postId)
+  }
+`;
 
 const Container = styled.View``;
 const Header = styled.View`
@@ -10,6 +22,7 @@ const Header = styled.View`
   align-items: center;
 `;
 const Touchable = styled.TouchableOpacity``;
+
 const HeaderUserContainer = styled.View`
   margin-left: 10px;
 `;
@@ -20,11 +33,67 @@ const Location = styled.Text`
   font-size: 12px;
 `;
 
-const Post = ({ user, location }) => {
+const IconsContainer = styled.View`
+  margin-bottom: 5px;
+  flex-direction: row;
+`;
+
+const IconContainer = styled.View`
+  margin-right: 10px;
+`;
+
+const InfoContainer = styled.View`
+  padding: 10px;
+`;
+
+const Caption = styled.Text`
+  margin: 3px 0px;
+`;
+
+const CommentCount = styled.Text`
+  opacity: 0.5;
+  font-size: 12px;
+`;
+
+const Post = ({
+  id,
+  user,
+  location,
+  files = [],
+  likeCount: likeCountProp,
+  caption,
+  comments = [],
+  isLiked: isLikedProp,
+  navigation
+}) => {
+  const [isLiked, setIsLiked] = useState(isLikedProp);
+  const [likeCount, setLikeCount] = useState(likeCountProp);
+  const [toggleLikeMutation] = useMutation(TOGGLE_LIKE, {
+    variables: {
+      postId: id
+    }
+  });
+  const handleLike = async () => {
+    if (isLiked === true) {
+      setLikeCount((l) => l - 1);
+    } else {
+      setLikeCount((l) => l + 1);
+    }
+    setIsLiked((p) => !p);
+    try {
+      await toggleLikeMutation();
+    } catch (e) {}
+  };
   return (
     <Container>
       <Header>
-        <Touchable>
+        <Touchable
+          onPress={() =>
+            navigation.navigate("UserDetailNavigation", {
+              username: user.username
+            })
+          }
+        >
           <Image
             style={{ height: 40, width: 40, borderRadius: 20 }}
             source={{ uri: user.avatar }}
@@ -37,6 +106,58 @@ const Post = ({ user, location }) => {
           </HeaderUserContainer>
         </Touchable>
       </Header>
+      <Swiper
+        showsPagination={false}
+        style={{ height: constants.height / 2.5 }}
+      >
+        {files &&
+          files.map((file) => (
+            <Image
+              style={{ width: constants.width, height: constants.height / 2.5 }}
+              key={file.id}
+              source={{ uri: file.url }}
+            />
+          ))}
+      </Swiper>
+      <InfoContainer>
+        <IconsContainer>
+          <Touchable onPress={handleLike}>
+            <IconContainer>
+              <Ionicons
+                size={28}
+                color={isLiked ? styles.redColor : styles.blackColor}
+                name={
+                  Platform.OS === "ios"
+                    ? isLiked
+                      ? "ios-heart"
+                      : "ios-heart-empty"
+                    : isLiked
+                    ? "md-heart"
+                    : "md-heart-empty"
+                }
+              />
+            </IconContainer>
+          </Touchable>
+          <Touchable>
+            <IconContainer>
+              <Ionicons
+                size={28}
+                color={styles.blackColor}
+                name={Platform.OS === "ios" ? "ios-text" : "md-text"}
+              />
+            </IconContainer>
+          </Touchable>
+        </IconsContainer>
+        <Touchable>
+          <Bold>{likeCount === 1 ? "1 like" : `${likeCount} likes`}</Bold>
+        </Touchable>
+        <Touchable>
+          <Caption>
+            <Bold>{user.username}</Bold> {caption}
+          </Caption>
+          <CommentCount>See all {comments.length} comments</CommentCount>
+        </Touchable>
+      </InfoContainer>
     </Container>
   );
 };

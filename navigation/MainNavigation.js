@@ -5,6 +5,8 @@ import TabNavigation from "./TabNavigation";
 import PhotoNavigation from "./PhotoNavigation";
 import MessageNavigation from "./MessageNavigation";
 import { stackStyles } from "../components/config";
+import DetailNavigation from "./DetailNavigation";
+import UserDetailNavigation from "./UserDetailNavigation";
 
 const MainNavigation = createStackNavigator();
 
@@ -20,6 +22,14 @@ export default () => (
       <MainNavigation.Screen
         name="PhotoNavigation"
         component={PhotoNavigation}
+      />
+      <MainNavigation.Screen
+        name="DetailNavigation"
+        component={DetailNavigation}
+      />
+      <MainNavigation.Screen
+        name="UserDetailNavigation"
+        component={UserDetailNavigation}
       />
       <MainNavigation.Screen
         name="MessageNavigation"
