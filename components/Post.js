@@ -99,7 +99,13 @@ const Post = ({
             source={{ uri: user.avatar }}
           />
         </Touchable>
-        <Touchable>
+        <Touchable
+          onPress={() =>
+            navigation.navigate("UserDetailNavigation", {
+              username: user.username
+            })
+          }
+        >
           <HeaderUserContainer>
             <Bold>{user.username}</Bold>
             <Location>{location}</Location>

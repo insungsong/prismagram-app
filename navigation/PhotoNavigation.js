@@ -10,7 +10,7 @@ import styles from "../styles";
 const Tab = createMaterialTopTabNavigator();
 const Stack = createStackNavigator();
 
-const PhotoTabs = () => {
+const PhotoTabs = ({ navigation }) => {
   return (
     <Tab.Navigator
       tabBarOptions={{
@@ -24,23 +24,31 @@ const PhotoTabs = () => {
       tabBarPosition="bottom"
       backBehavior="order"
     >
-      <Tab.Screen name="Select" component={SelectPhoto} />
-      <Tab.Screen name="Take" component={TakePhoto} />
+      <Tab.Screen
+        name="Select"
+        navigation={navigation}
+        component={SelectPhoto}
+      />
+      <Tab.Screen name="Take" navigation={navigation} component={TakePhoto} />
     </Tab.Navigator>
   );
 };
 
-export default () => {
+export default ({ navigation }) => {
   return (
     <Stack.Navigator
-      headerMode="none"
       screenOptions={{
-        title: "",
-        headerStyle: { ...stackStyles }
+        title: "Upload",
+        headerStyle: { ...stackStyles },
+        headerBackTitle: null
       }}
     >
       <Stack.Screen name="PhotoTabs" component={PhotoTabs} />
-      <Stack.Screen name="UploadPhoto" component={UploadPhoto} />
+      <Stack.Screen
+        name="UploadPhoto"
+        navigation={navigation}
+        component={UploadPhoto}
+      />
     </Stack.Navigator>
   );
 };

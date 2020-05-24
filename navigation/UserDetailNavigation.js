@@ -4,6 +4,7 @@ import UserDetail from "../screens/UserDetail";
 
 const Stack = createStackNavigator();
 export default ({
+  navigation,
   route: {
     params: { username }
   }
@@ -13,6 +14,7 @@ export default ({
       <Stack.Screen
         name={username}
         initialParams={{ username }}
+        navigation={navigation}
         component={UserDetail}
       />
     </Stack.Navigator>

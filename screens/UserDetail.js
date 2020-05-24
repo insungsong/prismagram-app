@@ -16,6 +16,7 @@ const GET_USER = gql`
 `;
 
 export default ({
+  navigation,
   route: {
     params: { username }
   }
@@ -27,7 +28,10 @@ export default ({
       {loading ? (
         <Loader />
       ) : (
-        data && data.seeUser && <UserProfile {...data.seeUser} />
+        data &&
+        data.seeUser && (
+          <UserProfile navigation={navigation} {...data.seeUser} />
+        )
       )}
     </ScrollView>
   );

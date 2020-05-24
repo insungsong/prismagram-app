@@ -119,7 +119,7 @@ const UserProfile = ({
           isGrid ? (
             <SquarePhoto navigation={navigation} key={p.id} {...p} />
           ) : (
-            <Post key={p.id} {...p} />
+            <Post navigation={navigation} key={p.id} {...p} />
           )
         )}
     </View>

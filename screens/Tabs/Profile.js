@@ -51,9 +51,7 @@ const GET_USER = gql`
 `;
 
 export default ({ navigation }) => {
-  console.log(navigation);
   const { loading, data } = useQuery(ME);
-  console.log(data);
   return (
     <ScrollView>
       {loading ? (

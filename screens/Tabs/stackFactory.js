@@ -77,6 +77,7 @@ export default ({ route, navigation }) => {
           screenOptions={{ headerStyle: { ...stackStyles } }}
         >
           <StackFactory.Screen
+            navigation={navigation}
             name={route.name}
             component={InitailRoute}
             options={customConfig}
