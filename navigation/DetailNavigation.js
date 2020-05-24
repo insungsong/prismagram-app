@@ -4,13 +4,19 @@ import Detail from "../screens/Tabs/Detail";
 
 const Stack = createStackNavigator();
 export default ({
+  navigation,
   route: {
     params: { id }
   }
 }) => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name=" " initialParams={{ id }} component={Detail} />
+      <Stack.Screen
+        name=" "
+        navigation={navigation}
+        initialParams={{ id }}
+        component={Detail}
+      />
     </Stack.Navigator>
   );
 };

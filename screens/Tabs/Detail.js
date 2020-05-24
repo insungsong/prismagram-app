@@ -17,18 +17,21 @@ const POST_DETAIL = gql`
 `;
 
 export default ({
+  navigation,
   route: {
     params: { id }
   }
 }) => {
   const { loading, data } = useQuery(POST_DETAIL, { variables: { id } });
-  console.log(loading, data);
   return (
     <ScrollView>
       {loading ? (
         <Loader />
       ) : (
-        data && data.seeFullPost && <Post {...data.seeFullPost} />
+        data &&
+        data.seeFullPost && (
+          <Post navigation={navigation} {...data.seeFullPost} />
+        )
       )}
     </ScrollView>
   );
